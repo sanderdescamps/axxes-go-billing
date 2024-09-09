@@ -1,0 +1,739 @@
+openapi: 3.1.0
+info:
+  title: GoBilling
+  description: |-
+    This is a basic REST API to collect the usage of your 
+    infrastructure components and perform some cost calculation. 
+  contact:
+    name: Sander Descamps
+    email: sander.descamps@axxes.com
+  version: 1.0.0
+servers:
+  - url: /api/v1
+paths:
+  /resources:
+    get:
+      tags:
+        - resources
+      summary: List all resources
+      description: List all resources
+      operationId: getAllResources
+      parameters:
+        - name: name
+          in: path
+          description: Search for resource by name
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Resource not found
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+    put:
+      tags:
+        - resources
+      summary: Create a new resource
+      operationId: createResource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateResource"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Resource not found
+        "422":
+          description: Validation exception
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+  /resources/{id}:
+    get:
+      tags:
+        - resources
+      summary: Get resources by ID
+      description: Returns a single resources
+      operationId: getResource
+      parameters:
+        - name: id
+          in: path
+          description: ID of resource to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Resource not found
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+    post:
+      tags:
+        - resources
+      summary: Updates a resource
+      description: ""
+      operationId: updateResource
+      parameters:
+        - name: id
+          in: path
+          description: ID of resource to return
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateResource"
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceResponse"
+        "400":
+          description: Invalid input
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+    delete:
+      tags:
+        - resources
+      summary: Deletes a resource
+      description: delete a resource
+      operationId: deleteResource
+      parameters:
+        - name: id
+          in: path
+          description: ID of resource to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          description: Invalid pet value
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+  /resources/{id}/add/{costTypeID}:
+    post:
+      tags:
+        - resources
+      summary: add CostType to a resource
+      description: ""
+      operationId: updateResourceAddCostType
+      parameters:
+        - name: id
+          in: path
+          description: ID of resource to return
+          required: true
+          schema:
+            type: string
+        - name: costTypeID
+          in: path
+          description: ID of CostType to add
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResourceResponse"
+        required: true
+      responses:
+        "400":
+          description: Invalid input
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+  /resources/{id}/delete/{costTypeID}:
+    post:
+      tags:
+        - resources
+      summary: delete CostType from a resource
+      description: ""
+      operationId: updateResourceDeleteCostType
+      parameters:
+        - name: id
+          in: path
+          description: ID of resource to return
+          required: true
+          schema:
+            type: string
+        - name: costTypeID
+          in: path
+          description: ID of CostType to delete
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResourceResponse"
+        required: true
+      responses:
+        "400":
+          description: Invalid input
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+  /cost_type:
+    get:
+      tags:
+        - cost_type
+      summary: List all CostTypes
+      description: List all CostTypes
+      operationId: getAllCostTypes
+      parameters:
+        - name: name
+          in: path
+          description: Search for resource by name
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CostTypeResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: CostType not found
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+    put:
+      tags:
+        - cost_type
+      summary: Create a new CostTypes
+      operationId: createCostType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCostType"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CostTypeResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: CostType not found
+        "422":
+          description: Validation exception
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+  /cost_type/{id}:
+    get:
+      tags:
+        - cost_type
+      summary: Find CostType by ID
+      description: Returns a single CostType
+      operationId: getCostType
+      parameters:
+        - name: id
+          in: path
+          description: ID of CostType to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CostTypeResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Resource not found
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+    post:
+      tags:
+        - cost_type
+      summary: Updates a CostType
+      description: ""
+      operationId: updateCostType
+      parameters:
+        - name: id
+          in: path
+          description: ID of CostType to return
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCostType"
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CostTypeResponse"
+        "400":
+          description: Invalid input
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+    delete:
+      tags:
+        - cost_type
+      summary: Deletes a CostType
+      description: delete a CostType
+      operationId: deleteCostType
+      parameters:
+        - name: id
+          in: path
+          description: ID of CostType to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          description: Invalid CostType value
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+  /cost_center:
+    get:
+      tags:
+        - cost_center
+      summary: List all CostCenters
+      description: List all CostCenters
+      operationId: getAllCostCenters
+      parameters:
+        - name: name
+          in: path
+          description: Search for resource by name
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CostCenterResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: CostCenter not found
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+    put:
+      tags:
+        - cost_center
+      summary: Create a new CostCenter
+      operationId: createCostCenter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCostCenter"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CostCenterResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: CostCenter not found
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+  /cost_center/{id}:
+    get:
+      tags:
+        - cost_center
+      summary: Find CostCenter by ID
+      description: Returns a single CostCenter
+      operationId: getCostCenter
+      parameters:
+        - name: id
+          in: path
+          description: ID of CostCenter to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CostCenterResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: CostCenter not found
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+    post:
+      tags:
+        - cost_center
+      summary: Updates a CostCenter
+      description: ""
+      operationId: updateCostCenter
+      parameters:
+        - name: id
+          in: path
+          description: ID of CostCenter to return
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCostCenter"
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CostCenterResponse"
+        "400":
+          description: Invalid input
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+    delete:
+      tags:
+        - cost_center
+      summary: Deletes a CostCenter
+      description: delete a CostCenter
+      operationId: deleteCostCenter
+      parameters:
+        - name: id
+          in: path
+          description: ID of CostCenter to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          description: Invalid CostCenter value
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+  /cost_center/{id}/total_cost:
+    get:
+      tags:
+        - cost_center
+      summary: Find total cost for CostCenter
+      description: Returns a single CostCenter
+      operationId: getTotalCostCenterCost
+      parameters:
+        - name: id
+          in: path
+          description: ID of CostCenter
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CostCenterResponse"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: CostCenter not found
+      security:
+        - basicAuth: []
+        - ApiKeyAuth: []
+        - bearerAuth: []
+components:
+  schemas:
+    Resource:
+      required:
+        - name
+        - resource_id
+        - creation_time
+        - value
+      type: object
+      properties:
+        name:
+          type: string
+          example: vm1.example.com
+        description:
+          type: string
+          example: virtual machine
+        resource_id:
+          type: string
+          example: 400c88f4-9a17-4a22-a3cc-21894286daa4
+        creation_time:
+          type: string
+          example: 07 Sep 24 17:23 CEST
+        cost_type_ids:
+          type: array
+          items:
+            type: string
+            example: 804fe11b-616a-460d-a8f8-529786a35238
+        value:
+          type: number
+          format: float
+          minimum: 0
+          example: 0.0
+    CreateResource:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: vm1.example.com
+        description:
+          type: string
+          example: virtual machine
+        cost_type_ids:
+          type: array
+          items:
+            type: string
+            example: 804fe11b-616a-460d-a8f8-529786a35238
+        cost_type_names:
+          type: array
+          items:
+            type: string
+          example:
+            - vm
+            - loadbalancer
+        value:
+          type: number
+          format: float
+          minimum: 0
+          example: 0.0
+    UpdateResource:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: vm1.example.com
+        description:
+          type: string
+          example: virtual machine
+        value:
+          type: number
+          format: float
+          minimum: 0
+          example: 0.0
+    ResourceResponse:
+      required:
+        - status_code
+        - results
+        - changed
+      type: object
+      properties:
+        status_code:
+          type: integer
+          format: int32
+          example: 200
+          minimum: 0
+          maximum: 599
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+        changed:
+          type: boolean
+          default: False
+        msg:
+          type: string
+    CostType:
+      required:
+        - type_id
+      type: object
+      properties:
+        type_id:
+          type: string
+          example: ae7c6453-8f94-4da7-98bc-5552c3c1866b
+        name:
+          type: string
+          example: aws-t3-nano
+        description:
+          type: string
+          example: This is a t3-nano EC2 AWS instance
+        cost:
+          type: object
+          properties:
+            cost_per_sec: 
+              type: number
+              format: float
+              example: 0.0015
+            cost_fixed: 
+              type: number
+              format: float
+              example: 1.2
+    CreateCostType:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: aws-t3-nano
+        description:
+          type: string
+          example: This is a t3-nano EC2 AWS instance
+        cost_per_sec: 
+          type: number
+          format: float
+          example: 0.0015
+        cost_fixed: 
+          type: number
+          format: float
+          example: 1.2
+    CostTypeResponse:
+      required:
+        - status_code
+        - results
+        - changed
+      type: object
+      properties:
+        status_code:
+          type: integer
+          format: int32
+          example: 200
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/CostType"
+        changed:
+          type: boolean
+          default: False
+        msg:
+          type: string
+    CostCenter:
+      required:
+        - cost_center_id
+        - name
+      type: object
+      properties:
+        cost_center_id:
+          type: string
+          example: ae7c6453-8f94-4da7-98bc-5552c3c1866b
+        name:
+          type: string
+          example: cc-aws
+        description:
+          type: string
+          example: All AWS resources
+    CreateCostCenter:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: cc-aws
+        description:
+          type: string
+          example: All AWS resources
+    CostCenterResponse:
+      required:
+        - status_code
+        - results
+        - changed
+      type: object
+      properties:
+        status_code:
+          type: integer
+          format: int32
+          example: 200
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/CostCenter"
+        changed:
+          type: boolean
+          default: False
+        msg:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    BearerAuth:
+      type: http
+      scheme: bearer

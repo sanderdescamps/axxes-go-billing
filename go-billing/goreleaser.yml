@@ -1,0 +1,24 @@
+version: 2
+builds:
+  - id: go-billing
+    binary: go-billing
+    goos:
+      - linux
+      - windows
+    goarch:
+      - amd64
+    # main: ./cmd/exporter
+
+checksum:
+  name_template: "checksums.txt"
+
+# changelog:
+#   filters:
+#     include:
+#       - >
+#         "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\([\w\-\.]+\))?(!)?: ([\w ])+([\s\S]*)"
+
+archives:
+  - id: go-billing
+    builds: [go-billing]
+    name_template: "gobilling_{{ .Version }}_{{ .Os }}_{{ .Arch }}"

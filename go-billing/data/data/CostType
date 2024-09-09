@@ -1,0 +1,29 @@
+[
+	{
+		"cost": {
+			"cost_fixed": 0.2,
+			"cost_per_sec": 0.6
+		},
+		"description": "initial data",
+		"name": "vm",
+		"type_id": "9df061ab-dce8-4d7a-a409-0fe566a52c7a"
+	},
+	{
+		"cost": {
+			"cost_fixed": 0.2,
+			"cost_per_sec": 0.6
+		},
+		"description": "initial data",
+		"name": "container",
+		"type_id": "2772bedd-8541-43b0-aea7-4d26f21eacae"
+	},
+	{
+		"type_id": "c233d9bf-f878-4742-9f63-ec8b2603f296",
+		"name": "loadbalancer",
+		"description": "initial data",
+		"cost": {
+			"cost_fixed": 0.2,
+			"cost_per_sec": 0.6
+		}
+	}
+]

@@ -1,0 +1,46 @@
+[
+	{
+		"cost_center_id": "7b7d20f5-4a6d-4340-a2ae-8606492d05f1",
+		"cost_type_ids": [
+			"9df061ab-dce8-4d7a-a409-0fe566a52c7a"
+		],
+		"creation_time": "08 Sep 24 23:34 CEST",
+		"description": "",
+		"name": "vm1",
+		"resource_id": "6eee776f-e5ef-4c00-b709-8880340ed6f2",
+		"value": 1
+	},
+	{
+		"cost_center_id": "7b7d20f5-4a6d-4340-a2ae-8606492d05f1",
+		"cost_type_ids": [
+			"9df061ab-dce8-4d7a-a409-0fe566a52c7a"
+		],
+		"creation_time": "08 Sep 24 23:34 CEST",
+		"description": "",
+		"name": "vm2",
+		"resource_id": "3b290255-78a7-4ae9-87e4-54231c24083e",
+		"value": 1
+	},
+	{
+		"cost_center_id": "7b7d20f5-4a6d-4340-a2ae-8606492d05f1",
+		"cost_type_ids": [
+			"9df061ab-dce8-4d7a-a409-0fe566a52c7a"
+		],
+		"creation_time": "08 Sep 24 23:34 CEST",
+		"description": "",
+		"name": "vm3",
+		"resource_id": "6dcfa84e-0c0c-44e5-a0cc-d2cdc92eca0f",
+		"value": 1
+	},
+	{
+		"resource_id": "691a9cb9-54d5-4777-9a72-c3fdadd12c38",
+		"name": "vm4",
+		"description": "",
+		"creation_time": "08 Sep 24 23:34 CEST",
+		"cost_type_ids": [
+			"9df061ab-dce8-4d7a-a409-0fe566a52c7a"
+		],
+		"cost_center_id": "7b7d20f5-4a6d-4340-a2ae-8606492d05f1",
+		"value": 1
+	}
+]

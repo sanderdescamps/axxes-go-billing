@@ -1,0 +1,44 @@
+[
+	{
+		"name": "admin",
+		"permissions": [
+			"admin"
+		],
+		"role_id": "955dfa27-0045-4d36-93cf-65ee4b83d571"
+	},
+	{
+		"name": "viewer",
+		"permissions": [
+			"cost_type:read",
+			"resource:read",
+			"basic:login"
+		],
+		"role_id": "61730d18-614e-41e0-8134-00ab86456507"
+	},
+	{
+		"name": "operator",
+		"permissions": [
+			"resource:write",
+			"resource:read",
+			"cost_type:write",
+			"cost_type:read",
+			"basic:login"
+		],
+		"role_id": "1658cb59-cc12-4614-bedc-93d19a70dbde"
+	},
+	{
+		"role_id": "18a7f2fb-de0f-4397-9770-8c1a8ffa2d88",
+		"name": "manager",
+		"permissions": [
+			"resource:write",
+			"resource:read",
+			"resource:new",
+			"resource:delete",
+			"cost_type:write",
+			"cost_type:read",
+			"cost_type:new",
+			"cost_type.:delete",
+			"basic:login"
+		]
+	}
+]

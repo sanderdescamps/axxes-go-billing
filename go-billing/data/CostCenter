@@ -1,0 +1,10 @@
+[
+	{
+		"cost_center_id": "372e7767-8cd5-496a-8dce-5b61408eb0c4",
+		"name": "cc-aws"
+	},
+	{
+		"cost_center_id": "f5e3dc71-dbac-4564-843a-81cb086d4f01",
+		"name": "cc-on-prem"
+	}
+]

@@ -1,0 +1,46 @@
+[
+	{
+		"cost_center_id": "372e7767-8cd5-496a-8dce-5b61408eb0c4",
+		"cost_type_ids": [
+			"466b13e8-9db2-44af-a59f-b568d814acc1"
+		],
+		"creation_time": "08 Sep 24 23:00 CEST",
+		"description": "",
+		"name": "vm1",
+		"resource_id": "63b40be9-54d3-40c9-9cd6-30e0677096a4",
+		"value": 1
+	},
+	{
+		"cost_center_id": "372e7767-8cd5-496a-8dce-5b61408eb0c4",
+		"cost_type_ids": [
+			"466b13e8-9db2-44af-a59f-b568d814acc1"
+		],
+		"creation_time": "08 Sep 24 23:00 CEST",
+		"description": "",
+		"name": "vm2",
+		"resource_id": "ff28c90c-d8c9-4605-a267-9736ffeed6f6",
+		"value": 1
+	},
+	{
+		"cost_center_id": "372e7767-8cd5-496a-8dce-5b61408eb0c4",
+		"cost_type_ids": [
+			"466b13e8-9db2-44af-a59f-b568d814acc1"
+		],
+		"creation_time": "08 Sep 24 23:00 CEST",
+		"description": "",
+		"name": "vm3",
+		"resource_id": "b1ef2f3f-9e80-45c4-a628-2025a2955d30",
+		"value": 1
+	},
+	{
+		"resource_id": "3d7d0d2f-cb56-4458-8dab-42686564732b",
+		"name": "vm4",
+		"description": "",
+		"creation_time": "08 Sep 24 23:00 CEST",
+		"cost_type_ids": [
+			"466b13e8-9db2-44af-a59f-b568d814acc1"
+		],
+		"cost_center_id": "372e7767-8cd5-496a-8dce-5b61408eb0c4",
+		"value": 1
+	}
+]

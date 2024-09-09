@@ -1,0 +1,10 @@
+[
+	{
+		"id": "42b3eb92-61f7-48ae-ab2c-b716f1730337",
+		"username": "admin",
+		"password_hash": "$2a$10$hQadiOjm8.PYwyo8Bv/SaetxhuEkO0Da0hV./uEssCrs/BwdNbqbe",
+		"api_token_hash": "",
+		"creation_time": "08 Sep 24 23:00 CEST",
+		"role_id": "dcbdf6c9-91b8-44b2-b751-709b498974c6"
+	}
+]
